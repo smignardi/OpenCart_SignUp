@@ -24,7 +24,7 @@ public class RegisterAccount extends Base{
 
     //TEST DE DATA VACIA
     @Test(dataProvider = "null fields",dataProviderClass = RegisterAccountDP.class)
-    public void testRegisterCorrectFields(String firstName,String lastName,String Email,String Phone,String Password,String PassConfirm) throws InterruptedException {
+    public void testNullFields(String firstName,String lastName,String Email,String Phone,String Password,String PassConfirm) throws InterruptedException {
         registerAccountPO = new RegisterAccountPO(driver);
         registerAccountPO.registerLogin(firstName,lastName,Email,Phone,Password,PassConfirm);
         Assert.assertTrue(registerAccountPO.errorDisplayed());
