@@ -78,9 +78,10 @@ public class RegisterAccountPO {
 
         checkPolicy.click();
 
+        Thread.sleep(2000);
         btnContinue.click();
 
-        Thread.sleep(2000);
+
 
     }
 }

@@ -8,6 +8,7 @@ public class RegisterAccount extends Base{
     private RegisterAccountPO registerAccountPO;
     private MainPagePO mainPagePO;
 
+
     @BeforeTest
     public void Initialize() throws InterruptedException {
         driver=initializeDriver();
@@ -16,16 +17,15 @@ public class RegisterAccount extends Base{
     }
 
     @BeforeMethod
-    public void beforeMethod() throws InterruptedException {
+    public void beforeMethod(){
         driver.get("https://demo.opencart.com");
-        Thread.sleep(2000);
         mainPagePO.goToRegisterPage();
     }
 
     //TEST DE DATA VACIA
     @Test(dataProvider = "null fields",dataProviderClass = RegisterAccountDP.class)
     public void testNullFields(String firstName,String lastName,String Email,String Phone,String Password,String PassConfirm) throws InterruptedException {
-        registerAccountPO = new RegisterAccountPO(driver);
+
         registerAccountPO.registerLogin(firstName,lastName,Email,Phone,Password,PassConfirm);
         Assert.assertTrue(registerAccountPO.errorDisplayed());
     }
@@ -34,7 +34,6 @@ public class RegisterAccount extends Base{
     @Test(dataProvider = "correct fields",dataProviderClass = RegisterAccountDP.class)
     public void testRegisterCorrectFieldsDP(String firstName,String lastName,String Email,String Phone,String Password,String PassConfirm) throws InterruptedException {
 
-        registerAccountPO = new RegisterAccountPO(driver);
         registerAccountPO.registerLogin(firstName,lastName,Email,Phone,Password,PassConfirm);
         Assert.assertTrue(registerAccountPO.accountCreatedMessage());
     }

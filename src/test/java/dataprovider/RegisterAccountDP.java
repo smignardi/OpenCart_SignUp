@@ -8,8 +8,8 @@ public class RegisterAccountDP {
     @DataProvider(name = "correct fields")
     public Object[][] correctFields() {
         return new Object[][]{
-                {"STEVEN", "MIGNARDI", "testaccount00008@gmail.com","940090223", "abc123","abc123"},
-                {"STEVEN", "MIGNARDI", "testaccount00009@gmail.com","940090223", "abc123","abc123"}
+                {"STEVEN", "MIGNARDI", "testaccount00010@gmail.com","940090223", "abc123","abc123"},
+                {"STEVEN", "MIGNARDI", "testaccount00011@gmail.com","940090223", "abc123","abc123"}
         };
     }
 
