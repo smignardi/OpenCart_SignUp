@@ -4,47 +4,45 @@ import org.testng.annotations.*;
 import pageObjects.MainPagePO;
 import pageObjects.RegisterAccountPO;
 
-public class RegisterAccount extends Base{
+public class RegisterAccount extends Base {
     private RegisterAccountPO registerAccountPO;
     private MainPagePO mainPagePO;
 
 
     @BeforeTest
-    public void Initialize() throws InterruptedException {
-        driver=initializeDriver();
+    public void Initialize() {
+        driver = initializeDriver();
         registerAccountPO = new RegisterAccountPO(driver);
         mainPagePO = new MainPagePO(driver);
     }
 
     @BeforeMethod
-    public void beforeMethod(){
+    public void beforeMethod() {
         driver.get("https://demo.opencart.com");
         mainPagePO.goToRegisterPage();
     }
 
-    //TEST DE DATA VACIA
-    @Test(dataProvider = "null fields",dataProviderClass = RegisterAccountDP.class)
-    public void testNullFields(String firstName,String lastName,String Email,String Phone,String Password,String PassConfirm) throws InterruptedException {
+    @Test(dataProvider = "null fields", dataProviderClass = RegisterAccountDP.class)
+    public void testNullFields(String firstName, String lastName, String Email, String Phone, String Password, String PassConfirm) {
 
-        registerAccountPO.registerLogin(firstName,lastName,Email,Phone,Password,PassConfirm);
+        registerAccountPO.registerLogin(firstName, lastName, Email, Phone, Password, PassConfirm);
         Assert.assertTrue(registerAccountPO.errorDisplayed());
     }
 
-    //CREACION DE CUENTA DE FORMA CORRECTA
-    @Test(dataProvider = "correct fields",dataProviderClass = RegisterAccountDP.class)
-    public void testRegisterCorrectFieldsDP(String firstName,String lastName,String Email,String Phone,String Password,String PassConfirm) throws InterruptedException {
+    @Test(dataProvider = "correct fields", dataProviderClass = RegisterAccountDP.class)
+    public void testRegisterCorrectFieldsDP(String firstName, String lastName, String Email, String Phone, String Password, String PassConfirm) {
 
-        registerAccountPO.registerLogin(firstName,lastName,Email,Phone,Password,PassConfirm);
+        registerAccountPO.registerLogin(firstName, lastName, Email, Phone, Password, PassConfirm);
         Assert.assertTrue(registerAccountPO.accountCreatedMessage());
     }
 
     @AfterMethod
-    public void DeleteCookies() {
+    public void logOut() {
         driver.manage().deleteAllCookies();
     }
 
     @AfterTest
-    public void closeDriver(){
+    public void closeDriver() {
         driver.close();
     }
 }

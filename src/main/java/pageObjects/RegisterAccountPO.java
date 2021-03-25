@@ -26,7 +26,8 @@ public class RegisterAccountPO {
     @FindBy(id="input-confirm")
     private WebElement inputPasswordConfirm;
 
-    @FindBy(xpath="//input[@name='agree']")
+    //@FindBy(xpath="//input[@name='agree']")
+    @FindBy(name="agree")
     private WebElement checkPolicy;
 
     @FindBy(xpath = "//input[@value='Continue']")
@@ -51,7 +52,7 @@ public class RegisterAccountPO {
         PageFactory.initElements(driver,this);
     }
 
-    public void registerLogin(String firstName,String lastName,String Email,String Phone,String Password,String PasswConfirm) throws InterruptedException {
+    public void registerLogin(String firstName,String lastName,String Email,String Phone,String Password,String PasswConfirm) {
         inputFirstname.clear();
         if(firstName!=null){
             inputFirstname.sendKeys(firstName);}
@@ -78,7 +79,6 @@ public class RegisterAccountPO {
 
         checkPolicy.click();
 
-        Thread.sleep(2000);
         btnContinue.click();
 
 
