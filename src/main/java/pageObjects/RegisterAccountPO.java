@@ -80,8 +80,5 @@ public class RegisterAccountPO {
         checkPolicy.click();
 
         btnContinue.click();
-
-
-
     }
 }
